@@ -26,10 +26,10 @@ Route::get('/calc1/{n1}/{n2}', function($n1, $n2) {
 });
 
 Route::get('/sabor/{n1}', function($n1){
-    echo "Sabooor $n1";
+    echo "<h1>Sabooor $n1</h1>";
     echo "<br>";
     echo "<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnZvem51Mzl0MDVjaGMyazVmMHh3MTU1aWRmYTRyZzBhajZtMmMwbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/omGFO0oWc9SinWcTji/giphy.gif'>";
-        
+    echo "<img src='https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDVybTV0b21iM3I1Z2Rzem50ZDFxcGg2MWs2cmw0bm02ZWtrZmozOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KyNgMZuBFHJajVbWF7/giphy.gif'>";
 });
 
 
@@ -37,3 +37,5 @@ Route::get('/sabor/{n1}', function($n1){
 Route::get('/keep', [KeepController::class, 'index'])->name('keep.index');
 
 Route::get('/keep/create', [KeepController::class, 'create'])->name('keep.create');
+
+Route::post('/keep/create', [KeepController::class, 'create']);
