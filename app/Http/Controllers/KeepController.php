@@ -20,13 +20,34 @@ class KeepController extends Controller
 
     public function create(Request $request){
         if($request->isMethod('post')){
-            $dados = $request->validate(['nota' => 'required' , 'cor' => 'required']);
+            $dados = $request->validate(['nota' => 'required|min:5' , 'cor' => 'required']);
             Nota::create($dados);
-            return redirect()->route('keep.index');
+            return redirect()->route('keep.index')->with('mensagem', 'Nota Criada Com Sucesso!');
         }
         return view('keep/create');
     }
 
+    public function delete(Nota $nota){
+        if(request()->isMethod('delete')){
+            $nota->delete();
 
+            return redirect()->route('keep.index')->with('mensagem', 'Sentimentos Apagados Com Sucesso');
+        }
+        return view('keep.delete', [
+            'nota' => $nota,
+        ]);
+    }
 
+    public function edit(Request $request, Nota $nota){
+if($request->isMethod('put')){
+    $dados = $request->validate(['nota' => 'required|min:5' , 'cor' => 'required']);
+
+    $nota->update($dados);
+    return redirect()->route('keep.index')->with('mensagem', 'Nota atualizada');
 }
+        return view('keep.create', [
+            'nota' => $nota,
+        ]);
+    }
+}
+

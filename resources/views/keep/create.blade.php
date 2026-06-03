@@ -8,24 +8,29 @@
     <hr>
     <br>
     <br>
-    @if ($erros->any())
-    <div style="color:red;">
+    @if ($errors->any())
+    <div style="color:red">
         <ul>
-            @foreach ($erros->all() as $erro)
+            @foreach ($errors->all() as $erro)
             <li>
                 {{ $erro }}
-                <div>Sheldon lee cooper you dog</div>
+                <h1>Sheldon Lee Cooper You Dog</h1>
             </li>
             @endforeach
         </ul>
     </div>
     @endif
-    <form method="post">
+    <form method="post" action="{{ isset($nota) ? route('keep.edit', $nota['id']) : route('keep.create') }} ">
         @csrf
-        <textarea name="nota"></textarea>
+
+    @if (isset($nota))
+    @method('PUT')
+    @endif
+
+        <textarea name="nota">{{ old('nota', $nota['nota'] ?? '') }}</textarea>
         <br>
         <br>
-        <input type="color" name="cor">
+        <input type="color" name="cor" value="{{ old('cor', $nota['cor'] ?? '') }}">
         <br>
         <br>
         <input type="submit" value="Gravar">
