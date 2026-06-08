@@ -14,6 +14,7 @@ return new class extends Migration
             $table->mediumText('nota');
             $table->text('cor');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
