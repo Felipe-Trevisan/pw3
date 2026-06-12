@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Nota extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['nota', 'cor'];
+    protected $fillable = ['nota', 'cor', 'imagem'];
 }

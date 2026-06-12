@@ -17,12 +17,12 @@
     <hr>
     @endif
     @foreach ($notas as $nota)
-        <div style="border:1px solid black; background-color: {{ $nota['cor'] }}; padding:20px; width:200px; display:inline-block; margin:20px; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; text-align: left;">{{ $nota['nota'] }}</div>
+        <div style="border:1px solid black; background-color: {{ $nota['cor'] }}; padding:20px; width:200px; display:inline-block; margin:20px; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; text-align: left;">{{ $nota['nota'] }}
         <br>
         <br>
-        <br>
-
-        <!-- <img src="{{ $nota['nota'] }}"> -->
+        @if($nota['imagem'])
+        <img src='{{ asset('storage/' . $nota['imagem']) }}' alt="Imagem Top" width="200px">
+        @endif
         <br>
         <br>
         Criada: {{ \Carbon\Carbon::parse($nota['created_at']) -> diffForHumans()}}
@@ -38,6 +38,10 @@
         <a href="{{ route('keep.delete', $nota['id']) }}">❌</a>
         <br>
         <br>
+        </div>
+        <br>
+        <br>
+        
         <hr>
     @endforeach
 @endsection
